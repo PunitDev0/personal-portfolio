@@ -1,6 +1,4 @@
-// components/LenisProvider.js
 "use client";
-
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 
@@ -8,10 +6,15 @@ export default function LenisProvider({ children }) {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => t, 
-      smooth: true,
-      direction: "vertical",
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
     });
+
+    // Dispatch custom event to share Lenis instance
+    window.dispatchEvent(new CustomEvent("lenis:initialized", { detail: lenis }));
+
+    // Stop Lenis scrolling initially
+    lenis.stop();
 
     function raf(time) {
       lenis.raf(time);
