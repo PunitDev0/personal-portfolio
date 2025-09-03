@@ -33,6 +33,8 @@ function Page() {
   const softwareRef = useRef(null);
   const developerRef = useRef(null);
 
+  const phase7 = useRef(null);
+
   // Phase 7
   const punit7Ref = useRef(null);
   const ageRef = useRef(null);
@@ -81,8 +83,10 @@ function Page() {
     tl.set([butRef.current, heartRef.current, likeRef.current, itRef.current], { opacity: 0 }, "+=0.5");
 
     // Phase 2 end: reset bg & text colors
-    tl.to(containerRef.current, { backgroundColor: "#000", color: "#fff", duration: 0.5 });
-
+    tl.to(containerRef.current, {
+      backgroundColor: "#FE3C01",
+      duration: 0.4
+    });
     // Phase 3: Image move to bottom-left
     tl.fromTo(
       ImageRef.current,
@@ -99,36 +103,35 @@ function Page() {
         y: "-19%",
         left: "0",
         bottom: "100px",
-        duration: 1,
+        duration: 0.8,
         ease: "power3.inOut",
       },
+      "<"
     );
 
     // Phase 4: HI, WELCOME, IMAGE2, HOME
     tl.fromTo(
       hiRef.current,
       { opacity: 0, x: -200 },
-      { opacity: 1, x: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" },
-      "<"
+      { opacity: 1, x: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" }
     );
-    tl.fromTo(welcomeRef.current, { opacity: 0, y: -100 }, { opacity: 1, y: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" });
-    tl.fromTo(Image2WrapperRef.current, { opacity: 0, y: -100 }, { opacity: 1, y: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" });
-    tl.fromTo(homerRef.current, { opacity: 0, x: 200 }, { opacity: 1, x: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" });
+    tl.fromTo(welcomeRef.current, { opacity: 0, y: -100 }, { opacity: 1, y: 0, duration: 0.2, ease: "elastic.out(1, 0.5)" });
+    tl.fromTo(Image2WrapperRef.current, { opacity: 0, y: -100 }, { opacity: 1, y: 0, duration: 0.2, ease: "elastic.out(1, 0.5)" });
+    tl.fromTo(homerRef.current, { opacity: 0, x: 200 }, { opacity: 1, x: 0, duration: 0.2, ease: "elastic.out(1, 0.5)" });
 
     // Phase 5: IT'S → ME → PUNIT
-    tl.fromTo(itsRef.current, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.4, ease: "elastic.out(1, 0.5)" });
-    tl.fromTo(meRef.current, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.4, ease: "elastic.out(1, 0.5)" });
-    tl.fromTo(punitRef.current, { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.4, ease: "elastic.out(1, 0.5)" });
+    tl.fromTo(itsRef.current, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.3, ease: "elastic.out(1, 0.5)" });
+    tl.fromTo(meRef.current, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3, ease: "elastic.out(1, 0.5)" });
+    tl.fromTo(punitRef.current, { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.3, ease: "elastic.out(1, 0.5)" });
 
     // Phase 6: PASSIONATE → SOFTWARE → DEVELOPER
-    tl.fromTo(passionateRef.current, { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" }, "+=0.3");
-    tl.fromTo(softwareRef.current, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" });
-    tl.fromTo(developerRef.current, { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" });
+    tl.fromTo(passionateRef.current, { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.4, ease: "elastic.out(1, 0.5)" }, "+=0.3");
+    tl.fromTo(softwareRef.current, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.4, ease: "elastic.out(1, 0.5)" });
+    tl.fromTo(developerRef.current, { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.4, ease: "elastic.out(1, 0.5)" });
 
     // Phase 7: PUNIT → AGE
-    tl.fromTo(punit7Ref.current, { opacity: 0, x: -100 }, { opacity: 1, x: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" }, "+=0.4");
-    tl.fromTo(ageRef.current, { opacity: 0, x: 100 }, { opacity: 1, x: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" });
-
+    tl.fromTo(punit7Ref.current, { opacity: 0, x: -100 }, { opacity: 1, x: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" }, "+=0.4");
+    tl.fromTo(ageRef.current, { opacity: 0, x: 100 }, { opacity: 1, x: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" });
     // Scroll animations for boxes (randomized continuous animation as you scroll)
     const gridConfigs = [
       { startIndex: 0, count: 4, cols: () => window.innerWidth >= 1024 ? 4 : window.innerWidth >= 640 ? 2 : 1 },
@@ -142,7 +145,6 @@ function Page() {
     gridConfigs.forEach(({ startIndex: groupStart, count, cols }) => {
       const elements = boxesRef.current.slice(groupStart, groupStart + count);
       elements.forEach((element, i) => {
-        // Random offset between -0.3 and 0.3 to vary start/end points
         const randomOffset = (Math.random() - 0.5) * 0.6; // -0.3 to 0.3
         gsap.fromTo(
           element,
@@ -165,40 +167,53 @@ function Page() {
       startIndex += count;
     });
 
-    // Phase 6 and Phase 7 scroll effects
     gsap.fromTo(
       [passionateRef.current, softwareRef.current, developerRef.current],
       { scale: 1, y: 0 },
       {
-        scale: 0.8, // Scale down to 80%
-        y: -200, // Shift left by 200px
+        scale: 0.6,
+        y: -100,
+        stagger: 0.1,
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top", // Start as soon as scrolling begins past the top
-          end: "max", // Continue until the end of the scroll
+          start: "top top",
+          end: "bottom top",
           scrub: true,
           markers: false,
+          toggleActions: "play reverse play reverse",
         },
-        ease: "power3.out",
+        ease: "elastic.out(1, 0.5)",
       }
     );
 
     gsap.fromTo(
-      [punit7Ref.current, ageRef.current],
+      phase7.current,
       { scale: 1 },
       {
-        scale: 1.2, // Scale up to 120%
-        position: "fixed", // Make fixed
+        scale: 1.8,
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top top+=1", // Start as soon as scrolling begins past the top
-          end: "max", // Continue until the end of the scroll
-          scrub: true,
+          start: "top top",
+          end: "bottom top",
+          toggleActions: "play reverse play reverse",
           markers: false,
         },
-        ease: "power3.out",
+        ease: "power4.out",
+        duration: 0.8,
       }
     );
+
+    gsap.to(containerRef.current, {
+      backgroundColor: "#ffffff",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top+=1",
+        toggleActions: "play reverse play reverse",
+        markers: false,
+      },
+      duration: 0.3,
+      ease: "power1.out",
+    });
 
     // Cleanup
     return () => {
@@ -211,13 +226,13 @@ function Page() {
   }, []);
 
   return (
-    <div className="w-full bg-black text-white font-formula overflow-hidden">
+    <div className="w-full bg-[#FE3C01] text-black font-formula overflow-hidden">
       {/* INTRO SECTION */}
-      <div ref={containerRef} className="relative w-full h-screen">
+      <div ref={containerRef} className="relative w-full h-screen text-black">
         {/* Center Image */}
         <Image
           ref={ImageRef}
-          src={"/SAVE_20250825_163924.jpg"}
+          src="/SAVE_20250825_163924.jpg"
           width={1000}
           height={1000}
           className="absolute h-[32vw] w-fit"
@@ -237,14 +252,14 @@ function Page() {
         </div>
 
         {/* Welcome Text Section */}
-        <div className="text-white w-full flex flex-col items-end justify-center px-28 mt-5 ">
+        <div className="w-full flex flex-col items-end justify-center px-28 mt-5">
           <div className="flex items-center gap-6 justify-center flex-wrap">
             <p className="text-[8vw] font-bold opacity-0 leading-[0.8]" ref={hiRef}>HI,</p>
             <p className="text-[8vw] font-bold opacity-0 leading-[0.8]" ref={welcomeRef}>WELCOME</p>
 
             <div ref={Image2WrapperRef} className="opacity-0">
               <Image
-                src={"/1724923071703.jpeg"}
+                src="/1724923071703.jpeg"
                 width={120}
                 height={120}
                 alt="Animated Image"
@@ -265,23 +280,23 @@ function Page() {
           </div>
 
           {/* Phase 6 */}
-          <div className="flex items-start flex-col fixed top-[25%] text-start leading-[1] mt-10 translate-x-[-20px]">
+          <div className="flex items-start flex-col fixed top-[25%] text-start mt-10 translate-x-[-20px] leading-none">
             <div ref={passionateRef} className="flex items-start opacity-0">
-              <p className="text-[7vw] font-bold ">PASSIONATE</p>
-              <p className="font-bold w-[143px]">Driven by curiosity & creativity</p>
+              <span className="text-[7vw] font-bold">PASSIONATE</span>
+              <span className="font-bold w-[143px]">Driven by curiosity & creativity</span>
             </div>
             <div ref={softwareRef} className="flex items-center relative opacity-0">
-              <p className="font-bold w-[140px] absolute -left-[130px]">Building modern, scalable apps</p>
-              <p className="text-[7vw] font-bold">SOFTWARE</p>
+              <span className="font-bold w-[140px]">Building modern, scalable apps</span>
+              <span className="text-[7vw] font-bold">SOFTWARE</span>
             </div>
             <div ref={developerRef} className="flex items-start opacity-0">
-              <p className="text-[7vw] font-bold">DEVELOPER</p>
-              <p className="font-bold w-[140px]">Focused on clean & efficient code</p>
+              <span className="text-[7vw] font-bold">DEVELOPER</span>
+              <span className="font-bold w-[140px]">Focused on clean & efficient code</span>
             </div>
           </div>
 
           {/* Phase 7 */}
-          <div className="flex gap-14 translate-x-[-100px] leading-[0.8] absolute bottom-0">
+          <div className="flex gap-14 translate-x-[-230px] fixed leading-[0.8] text-start bottom-10" ref={phase7}>
             <p className="text-[8vw] font-bold opacity-0" ref={punit7Ref}>
               PUNIT <span className="text-7xl absolute top-12">®</span>
             </p>
@@ -291,19 +306,17 @@ function Page() {
       </div>
 
       {/* SCROLL BOXES SECTION */}
-      <div className="w-full px-10 py-20 space-y-16">
+      <div className="w-full bg-white px-10 py-20 space-y-16">
         {/* 4 boxes with varied heights and images */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={i}
               ref={(el) => (boxesRef.current[i] = el)}
-              className={`relative bg-gray-800 rounded-2xl shadow-lg opacity-0 overflow-hidden ${
-                i === 0 ? "h-[40vh]" : i === 1 ? "h-[60vh]" : "h-[50vh]"
-              }`}
+              className={`relative rounded-2xl shadow-lg opacity-0 overflow-hidden ${i === 0 ? "h-[40vh]" : i === 1 ? "h-[60vh]" : "h-[50vh]"}`}
             >
               <Image
-                src={`/project${i + 1}.jpg`} // Replace with your image paths
+                src={i === 0 ? "/360property.png" : i === 1 ? "/apple.png" : i === 2 ? "/peunique.png" : "/sociallysynk.png"}
                 width={400}
                 height={i === 0 ? 400 : i === 1 ? 600 : 500}
                 alt={`Project ${i + 1}`}
@@ -320,10 +333,10 @@ function Page() {
         <div className="grid grid-cols-1 gap-6">
           <div
             ref={(el) => (boxesRef.current[4] = el)}
-            className="relative bg-gray-800 rounded-2xl shadow-lg opacity-0 overflow-hidden h-[80vh]"
+            className="relative rounded-2xl shadow-lg opacity-0 overflow-hidden h-[80vh]"
           >
             <Image
-              src="/featured.jpg" // Replace with your image path
+              src="/emailautomation.png"
               width={400}
               height={800}
               alt="Featured Project"
@@ -344,7 +357,7 @@ function Page() {
               className="relative bg-gray-800 rounded-2xl shadow-lg opacity-0 overflow-hidden h-[55vh]"
             >
               <Image
-                src={`/skill${i + 1}.jpg`} // Replace with your image paths
+                src={i === 0 ? "/workflow.jpeg" : "/360property.png"}
                 width={400}
                 height={550}
                 alt={`Skill ${i + 1}`}
@@ -366,7 +379,7 @@ function Page() {
               className="relative bg-gray-800 rounded-2xl shadow-lg opacity-0 overflow-hidden h-[45vh]"
             >
               <Image
-                src={`/experience${i + 1}.jpg`} // Replace with your image paths
+                src={i === 0 ? "/apple.png" : i === 1 ? "/peunique.png" : "/sociallysynk.png"}
                 width={400}
                 height={450}
                 alt={`Experience ${i + 1}`}
@@ -385,12 +398,10 @@ function Page() {
             <div
               key={i}
               ref={(el) => (boxesRef.current[10 + i] = el)}
-              className={`relative bg-gray-800 rounded-2xl shadow-lg opacity-0 overflow-hidden ${
-                i === 0 ? "h-[50vh]" : i === 2 ? "h-[70vh]" : "h-[40vh]"
-              }`}
+              className={`relative bg-gray-800 rounded-2xl shadow-lg opacity-0 overflow-hidden ${i === 0 ? "h-[50vh]" : i === 2 ? "h-[70vh]" : "h-[40vh]"}`}
             >
               <Image
-                src={`/contact${i + 1}.jpg`} // Replace with your image paths
+                src={i === 0 ? "/emailautomation.png" : i === 1 ? "/workflow.jpeg" : i === 2 ? "/360property.png" : "/apple.png"}
                 width={400}
                 height={i === 2 ? 700 : i === 0 ? 500 : 400}
                 alt={`Contact ${i + 1}`}
