@@ -148,9 +148,9 @@ function Page() {
         const randomOffset = (Math.random() - 0.5) * 0.6; // -0.3 to 0.3
         gsap.fromTo(
           element,
-          { opacity: 0, y: 100, scale: 0 },
+          { y: 100, scale: 0 },
           {
-            opacity: 1,
+            // opacity: 1,
             y: 0,
             scale: 1,
             scrollTrigger: {
@@ -308,23 +308,23 @@ function Page() {
       {/* SCROLL BOXES SECTION */}
       <div className="w-full bg-white px-10 py-20 space-y-16">
         {/* 4 boxes with varied heights and images */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {Array.from({ length: 4 }).map((_, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Array.from({ length: 3 }).map((_, i) => (
             <div
               key={i}
               ref={(el) => (boxesRef.current[i] = el)}
-              className={`relative rounded-2xl shadow-lg opacity-0 overflow-hidden ${i === 0 ? "h-[40vh]" : i === 1 ? "h-[60vh]" : "h-[50vh]"}`}
+              className={`relative rounded-2xl shadow-lg  overflow-hidden ${i === 0 ? "h-[40vh]" : i === 1 ? "h-[60vh]" : "h-[50vh]"}`}
             >
               <Image
-                src={i === 0 ? "/360property.png" : i === 1 ? "/apple.png" : i === 2 ? "/peunique.png" : "/sociallysynk.png"}
-                width={400}
+                src={i === 0 ? "/assets/360property.png" : i === 1 ? "/assets/apple.png" : i === 2 ? "/assets/peunique.png" : "/assets/sociallysynk.png"}
+                width={1000}
                 height={i === 0 ? 400 : i === 1 ? 600 : 500}
                 alt={`Project ${i + 1}`}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              {/* <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                 <p className="text-white text-xl font-bold">Project {i + 1}</p>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>
@@ -333,18 +333,18 @@ function Page() {
         <div className="grid grid-cols-1 gap-6">
           <div
             ref={(el) => (boxesRef.current[4] = el)}
-            className="relative rounded-2xl shadow-lg opacity-0 overflow-hidden h-[80vh]"
+            className="relative rounded-2xl shadow-lg  overflow-hidden h-[80vh]"
           >
             <Image
-              src="/emailautomation.png"
-              width={400}
-              height={800}
+              src="/assets/socialsynk.png"
+              width={1000}
+              height={1000}
               alt="Featured Project"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+            {/* <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
               <p className="text-white text-xl font-bold">Featured Work</p>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -354,64 +354,121 @@ function Page() {
             <div
               key={i}
               ref={(el) => (boxesRef.current[5 + i] = el)}
-              className="relative bg-gray-800 rounded-2xl shadow-lg opacity-0 overflow-hidden h-[55vh]"
+              className="relative  rounded-2xl shadow-none  overflow-hidden h-[55vh]"
             >
               <Image
-                src={i === 0 ? "/workflow.jpeg" : "/360property.png"}
-                width={400}
-                height={550}
+                src={i === 0 ? "/assets/workflow.jpeg" : "/assets/emailautomation.png"}
+                width={1000}
+                height={1050}
                 alt={`Skill ${i + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              {/* <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                 <p className="text-white text-xl font-bold">Skill {i + 1}</p>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>
 
-        {/* 3 boxes with images */}
-        <div className="grid grid-cols-3 gap-6">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div
-              key={i}
-              ref={(el) => (boxesRef.current[7 + i] = el)}
-              className="relative bg-gray-800 rounded-2xl shadow-lg opacity-0 overflow-hidden h-[45vh]"
-            >
-              <Image
-                src={i === 0 ? "/apple.png" : i === 1 ? "/peunique.png" : "/sociallysynk.png"}
-                width={400}
-                height={450}
-                alt={`Experience ${i + 1}`}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                <p className="text-white text-xl font-bold">Experience {i + 1}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+
 
         {/* 4 boxes with varied heights and images */}
         <div className="grid grid-cols-4 gap-6">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div
-              key={i}
-              ref={(el) => (boxesRef.current[10 + i] = el)}
-              className={`relative bg-gray-800 rounded-2xl shadow-lg opacity-0 overflow-hidden ${i === 0 ? "h-[50vh]" : i === 2 ? "h-[70vh]" : "h-[40vh]"}`}
-            >
-              <Image
-                src={i === 0 ? "/emailautomation.png" : i === 1 ? "/workflow.jpeg" : i === 2 ? "/360property.png" : "/apple.png"}
-                width={400}
-                height={i === 2 ? 700 : i === 0 ? 500 : 400}
-                alt={`Contact ${i + 1}`}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                <p className="text-white text-xl font-bold">Contact {i + 1}</p>
+          {/* Languages */}
+          <div
+            ref={(el) => (boxesRef.current[10] = el)}
+            className="relative  rounded-2xl  overflow-hidden h-[50vh] p-6 flex flex-col"
+          >
+            <h3 className="text-black text-2xl font-bold mb-4">Languages</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col items-center">
+                <Image src="/skills/javascript.png" width={80} height={80} alt="JavaScript" />
+                <p className="text-sm text-black mt-1">JavaScript</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/skills/typescript.png" width={80} height={80} alt="TypeScript" />
+                <p className="text-sm text-black mt-1">TypeScript</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/skills/nodejs.png" width={80} height={80} alt="Node.js" />
+                <p className="text-sm text-black mt-1">Node.js</p>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Frameworks */}
+          <div
+            ref={(el) => (boxesRef.current[11] = el)}
+            className="relative  rounded-2xl overflow-hidden h-[40vh] p-6 flex flex-col"
+          >
+            <h3 className="text-black text-2xl font-bold mb-4">Frameworks</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col items-center">
+                <Image src="/skills/react.png" width={80} height={80} alt="React" />
+                <p className="text-sm text-black mt-1">React</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/skills/nextjs.webp" width={80} height={80} alt="Next.js" />
+                <p className="text-sm text-black mt-1">Next.js</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/skills/laravel.svg" width={80} height={80} alt="Laravel" />
+                <p className="text-sm text-black mt-1">Laravel</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/skills/nestjs.webp" width={80} height={80} alt="NestJS" />
+                <p className="text-sm text-black mt-1">NestJS</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Databases */}
+          <div
+            ref={(el) => (boxesRef.current[12] = el)}
+            className="relative  rounded-2xl   overflow-hidden h-[70vh] p-6 flex flex-col"
+          >
+            <h3 className="text-black text-2xl font-bold mb-4">Databases</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col items-center">
+                <Image src="/skills/mysql.png" width={80} height={80} alt="MySQL" />
+                <p className="text-sm text-black mt-1">MySQL</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/skills/mongo.png" width={80} height={80} alt="MongoDB" />
+                <p className="text-sm text-black mt-1">MongoDB</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/skills/redis.png" width={80} height={80} alt="Redis" />
+                <p className="text-sm text-black mt-1">Redis</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Libraries & Tools */}
+          <div
+            ref={(el) => (boxesRef.current[13] = el)}
+            className="relative  rounded-2xl  overflow-hidden h-[40vh] p-6 flex flex-col"
+          >
+            <h3 className="text-black text-2xl font-bold mb-4">Libraries & Tools</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col items-center">
+                <Image src="/skills/gsap.png" width={80} height={80} alt="GSAP" />
+                <p className="text-sm text-black mt-1">GSAP</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/skills/tailwind.png" width={80} height={80} alt="Tailwind CSS" />
+                <p className="text-sm text-black mt-1">Tailwind CSS</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/skills/docker.png" width={80} height={80} alt="Docker" />
+                <p className="text-sm text-black mt-1">Docker</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src="/skills/aws.png" width={80} height={80} alt="AWS" />
+                <p className="text-sm text-black mt-1">AWS</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
